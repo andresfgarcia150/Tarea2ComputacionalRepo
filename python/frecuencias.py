@@ -18,7 +18,8 @@ def letraValida(var):
     elif var == "\xa0": return False
     elif var == "\xad": return False
     elif var == ":": return False
-    elif var == "'": return False    
+    elif var == "'": return False
+    elif var == '"': return False    
     elif var == "(": return False
     elif var == ")": return False
     elif var == "[": return False
@@ -99,8 +100,17 @@ archivoSalida.close()
 # Creacion del archivo con comentarios
 nombreArchivoComentario = "comentario.txt"
 archivoComentario = open(nombreArchivoComentario,'w')
-lineaTexto = "Comentarios sobre la lectura del texto: %s\n" (nombreArchivo)
+lineaTexto = "Comentarios sobre la lectura del texto:" + nombreArchivo + "\n\n"
 archivoComentario.write(lineaTexto)
+archivoComentario.write("Los siguientes caracteres no se reconocen como validos: \n")
+archivoComentario.write(" ;  .  ' '  \ n  \ r  \ xa0  \ xad  :  '  (  )  [  ]  {  }\n")
+archivoComentario.write("Los siguientes caracteres fueron encontrados:\n")
+for i in listaRecorrido:
+    lineaTexto = vectorCaracteres[i] + ", "
+    archivoComentario.write(lineaTexto)
+lineaTexto = "\n\nEl numero de caracteres distintos encontrados en el texto es:  %d" % (numeroCaracteres)
+archivoComentario.write(lineaTexto)
+archivoComentario.close()
 
-print vectorCaracteres
+
 print "El numero de caracteres es: ", numeroCaracteres
